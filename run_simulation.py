@@ -17,6 +17,7 @@ Usage:
     python run_simulation.py --no-interventions # baseline: drones watch but never act
     python run_simulation.py --camera-fault     # inject a camera fault at 70-74 s
     python run_simulation.py --no-video         # fast: numbers only, no rendering of the overview
+    python run_simulation.py --no-cards         # video without the title and results cards
 """
 
 import argparse
@@ -29,123 +30,194 @@ import cv2
 from sim.drone_env import CrowdFleetEnv, SPOTLIGHT_RADIUS, VENUE_X, VENUE_Y, BARRIER_X
 from perception.density_detector import DensityPerceptionEngine
 from perception.tracker import MultiTracker
-from perception.zone_analytics import FleetCrowdMap, STATUS_NAMES
-from brain.fleet_planner import FleetCoordinator, LADDER
+from perception.zone_analytics import FleetCrowdMap
+from brain.fleet_planner import FleetCoordinator
+from viz import hud
 
-FRAME_W, FRAME_H = 640, 480
-PANEL_H = 230
+FRAME_W, FRAME_H = 640, 480          # drone cameras
 CONTROL_HZ = 10
-STATUS_BGR = {None: (90, 90, 90), 0: (80, 170, 80), 1: (40, 200, 230), 2: (30, 130, 255), 3: (40, 40, 230)}
+
+# Video layout, 1920x1080:  header | overview (1280x720) + drone camera (640x480)
+#                                    bottom panel (1280x300) + fleet crowd map (640x540)
+VID_W, VID_H = 1920, 1080
+HEADER_H = 60
+OV_W, OV_H = 1280, 720
+BOTTOM_H = VID_H - HEADER_H - OV_H
+MAP_H = VID_H - HEADER_H - FRAME_H
+STEP_TEXT = ["Monitor", "Spotlight", "Announcement", "Security"]
+STEP_HINT = ["a drone moves in to inspect", "the area is marked with a red light",
+             "people are asked to move to free areas", "the security team is notified"]
 
 
 # ---------------------------------------------------------------------- drawing
-def put(img, text, org, scale=0.45, color=(235, 235, 240), thick=1):
-    cv2.putText(img, text, org, cv2.FONT_HERSHEY_SIMPLEX, scale, color, thick, cv2.LINE_AA)
+def draw_header(t, duration, enabled, coordinator):
+    cv = hud.Canvas(VID_W, HEADER_H, hud.BG)
+    cv.rect(0, HEADER_H - 1, VID_W, HEADER_H, hud.BORDER)
+    cv.text((28, HEADER_H / 2), "CrowdFlow", 22, hud.TEXT, "bold", anchor="lm")
+    cv.text((28 + hud.text_width("CrowdFlow", 22, "bold") + 20, HEADER_H / 2), "Stage-front scenario  ·  100 people  ·  2 drones  ·  simulation",
+            15, hud.TEXT_2, anchor="lm")
+    x = VID_W - 28
+    x -= hud.text_width(f"{t:5.1f} s / {duration:.0f} s", 16, mono=True)
+    cv.text((x, HEADER_H / 2), f"{t:5.1f} s / {duration:.0f} s", 16, hud.TEXT, mono=True, anchor="lm")
+    label = "Drones intervene" if enabled else "Drones only watch"
+    w = hud.text_width(label, 13, "bold") + 16
+    cv.chip(x - 24 - w, HEADER_H / 2 - 11.5, label, hud.ACCENT if enabled else hud.TEXT_3)
+    if coordinator.security_alert:
+        w2 = hud.text_width("Security team notified", 13, "bold") + 16
+        cv.chip(x - 24 - w - 12 - w2, HEADER_H / 2 - 11.5, "Security team notified", hud.STATUS[3],
+                text_colour=hud.TEXT)
+    return cv.finish()
 
 
-def draw_world_pane(rgb, t, duration, coordinator, enabled, last_announcement):
-    bgr = cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR)
+def draw_overview(rgb, env, coordinator, t, last_announcement):
+    cv = hud.Canvas(OV_W, OV_H, img=cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR))
+    for d in ("alpha", "bravo"):                        # name tags above the drones
+        p = hud.project_to_image(env.model, env.data, "world_cam", coordinator.pos[d] + [0, 0, 0.55],
+                                 OV_W, OV_H)
+        if p is not None and 0 < p[0] < OV_W and 30 < p[1] < OV_H:
+            label = f"{d.capitalize()}  ·  {coordinator.state[d].lower()}"
+            w = hud.text_width(label, 13, "bold") + 16
+            cv.chip(p[0] - w / 2, p[1] - 30, label, hud.PANEL, text_colour=hud.TEXT)
     if last_announcement is not None and t - last_announcement[0] < 6.0:
-        cv2.rectangle(bgr, (0, FRAME_H - 34), (FRAME_W, FRAME_H), (30, 110, 200), -1)
-        put(bgr, f"DRONE ANNOUNCEMENT: {last_announcement[1]}", (10, FRAME_H - 12), 0.45, thick=1)
-    cv2.rectangle(bgr, (0, 0), (FRAME_W, 50), (18, 20, 26), -1)
-    put(bgr, f"CROWDFLOW SIMULATION | t = {t:5.1f}s / {duration:.0f}s", (12, 20), 0.55, thick=2)
-    mode = "INTERVENTIONS ON" if enabled else "BASELINE: INTERVENTIONS OFF"
-    put(bgr, f"Alpha: {coordinator.state['alpha']}   Bravo: {coordinator.state['bravo']}   [{mode}]",
-        (12, 42), 0.43, (170, 220, 255))
-    return bgr
+        msg = f"“{last_announcement[1]}”"
+        x1 = 24 + max(hud.text_width(msg, 18), 260) + 40
+        cv.shade(24, 24, x1, 92, hud.BG, 0.88)
+        cv.rect(24, 24, 28, 92, hud.ACCENT)
+        cv.text((46, 44), f"ANNOUNCEMENT FROM {last_announcement[2].upper()}", 12, hud.ACCENT, "bold",
+                anchor="lm")
+        cv.text((46, 70), msg, 18, hud.TEXT, anchor="lm")
+    return cv.finish()
 
 
-def draw_drone_pane(perc, tracks, drone, pos, state, detector, crowd_map, t, beacon):
-    img = perc["bgr"].copy()
+def draw_drone_cam(perc, tracks, drone, pose, state, detector, crowd_map, t, beacon):
+    cv = hud.Canvas(FRAME_W, FRAME_H, img=perc["bgr"].copy())
+    stopped_col = hud.STATUS[1]
     for tr in tracks:
-        u, v = detector.world_to_pixel(tr.pos, pos)
-        col = (60, 220, 60) if tr.speed > 0.3 else (0, 200, 255) if tr.slow_updates < 3 else (60, 60, 255)
-        cv2.circle(img, (u, v), 6, col, 2)
+        u, v = detector.world_to_pixel(tr.pos, pose)
+        cv.circle((u, v), 8, stopped_col if tr.slow_updates >= 3 else hud.TEXT, 1)
     worst = crowd_map.worst_zone(t, fresh_only=False)
     if worst is not None and worst.status >= 1:
         x0, x1, y0, y1 = worst.rect
-        p0 = detector.world_to_pixel((x0, y1), pos)
-        p1 = detector.world_to_pixel((x1, y0), pos)
-        cv2.rectangle(img, p0, p1, STATUS_BGR[worst.status], 2)
-        put(img, f"{STATUS_NAMES[worst.status]} C={worst.score:.0f}", (p0[0], max(14, p0[1] - 6)),
-            0.45, STATUS_BGR[worst.status], 2)
-    cv2.rectangle(img, (0, 0), (FRAME_W, 50), (18, 20, 26), -1)
-    put(img, f"DRONE {drone.upper()} CAMERA | z={pos[2]:.1f}m | {state}", (12, 20), 0.55, thick=2)
-    put(img, f"heads detected: {len(perc['detections'])}  tracks: {len(tracks)}  "
-             f"cam health: {perc['vision_confidence']:.2f}  spotlight: {'ON' if beacon else 'off'}",
-        (12, 42), 0.42, (190, 200, 210))
-    put(img, "circles: green moving / amber slow / red stopped", (12, FRAME_H - 10), 0.4, (200, 200, 200))
-    return img
+        p0 = detector.world_to_pixel((x0, y1), pose)
+        p1 = detector.world_to_pixel((x1, y0), pose)
+        cv.rect(p0[0], p0[1], p1[0], p1[1], hud.STATUS[worst.status], filled=False, thickness=2)
+        cv.chip(p0[0], max(52, p0[1] - 26), f"{hud.STATUS_LABEL[worst.status]}  ·  C {worst.score:.0f}",
+                hud.STATUS[worst.status])
+    cv.shade(0, 0, FRAME_W, 44, hud.BG, 0.8)
+    cv.text((16, 22), f"{drone.upper()} CAMERA", 13, hud.TEXT, "bold", anchor="lm")
+    cv.text((16 + hud.text_width(f"{drone.upper()} CAMERA", 13, "bold") + 14, 22), f"{pose[2]:.1f} m  ·  {state.lower()}" + ("  ·  spotlight on" if beacon else ""),
+            13, hud.TEXT_2, anchor="lm")
+    cv.text((FRAME_W - 16, 22), f"{len(tracks)} people tracked", 13, hud.TEXT_2, anchor="rm")
+    cv.shade(0, FRAME_H - 34, FRAME_W, FRAME_H, hud.BG, 0.8)
+    cv.circle((22, FRAME_H - 17), 6, hud.TEXT, 1)
+    cv.text((34, FRAME_H - 17), "moving", 12, hud.TEXT_2, anchor="lm")
+    cv.circle((104, FRAME_H - 17), 6, stopped_col, 1)
+    cv.text((116, FRAME_H - 17), "stopped 3 s+", 12, hud.TEXT_2, anchor="lm")
+    cv.rect(0, 0, 1, FRAME_H, hud.BORDER)
+    return cv.finish()
 
 
-def draw_panel(crowd_map, coordinator, t, drone_pos, beacon):
-    panel = np.full((PANEL_H, FRAME_W * 2, 3), (22, 24, 30), np.uint8)
-
-    # --- fleet crowd map (left) ---
-    s = 13.0
-    ox, oy = 14, 18
-    to_px = lambda x, y: (int(ox + (x + VENUE_X) * s), int(oy + (VENUE_Y - y) * s))
-    put(panel, "FLEET CROWD MAP (camera-derived)", (ox, 13), 0.42, (200, 200, 210))
-    cv2.rectangle(panel, to_px(-VENUE_X, VENUE_Y), to_px(VENUE_X, -VENUE_Y), (70, 70, 80), 1)
-    cv2.rectangle(panel, to_px(-VENUE_X, 5.5), to_px(BARRIER_X, -5.5), (90, 60, 80), -1)
-    put(panel, "STAGE", (to_px(-VENUE_X, 0)[0] + 1, to_px(0, 0)[1]), 0.3, (220, 200, 230))
-    for z in crowd_map.zones:                       # 1 m cells coloured by the zone centred there
+def draw_map(crowd_map, coordinator, t):
+    cv = hud.Canvas(FRAME_W, MAP_H, hud.PANEL)
+    cv.rect(0, 0, 1, MAP_H, hud.BORDER)
+    cv.rect(0, 0, FRAME_W, 1, hud.BORDER)
+    hud.section_title(cv, 24, 20, "Fleet crowd map",
+                      (FRAME_W - 24, f"camera-derived  ·  {crowd_map.coverage(t) * 100:.0f}% of floor seen"))
+    s = (FRAME_W - 48) / (2 * VENUE_X)
+    ox, oy = 24, 52
+    to_px = lambda x, y: (ox + (x + VENUE_X) * s, oy + (VENUE_Y - y) * s)
+    cv.rect(*to_px(-VENUE_X, VENUE_Y), *to_px(VENUE_X, -VENUE_Y), hud.BG)
+    for z in crowd_map.zones:
         fresh = crowd_map.freshness(z, t)
-        col = STATUS_BGR[z.status] if fresh != "unknown" else STATUS_BGR[None]
+        col = hud.STATUS[z.status] if fresh != "unknown" else hud.STATUS[None]
+        weight = 0.22 if (fresh != "unknown" and z.status == 0) else 1.0
         if fresh == "stale":
-            col = tuple(int(c * 0.55) for c in col)
+            weight *= 0.5
+        col = tuple(int(c * weight + b * (1 - weight)) for c, b in zip(col, hud.BG))
         p0, p1 = to_px(z.c[0] - 0.5, z.c[1] + 0.5), to_px(z.c[0] + 0.5, z.c[1] - 0.5)
-        cv2.rectangle(panel, p0, (p1[0] - 1, p1[1] - 1), col, -1)
-    for d, colr in (("alpha", (40, 200, 245)), ("bravo", (245, 165, 40))):
-        p = to_px(*drone_pos[d][:2])
-        if beacon[d]:
-            cv2.circle(panel, p, int(SPOTLIGHT_RADIUS * s), (40, 40, 255), 1)
-        cv2.circle(panel, p, 5, colr, -1)
-        put(panel, d[0].upper(), (p[0] + 6, p[1] - 4), 0.4, colr, 1)
-    legend_y = oy + int(2 * VENUE_Y * s) + 14
-    for k, (name, col) in enumerate([("normal", 0), ("developing", 1), ("high", 2), ("critical", 3),
-                                     ("unknown", None)]):
-        x = ox + k * 54
-        cv2.rectangle(panel, (x, legend_y - 8), (x + 8, legend_y), STATUS_BGR[col], -1)
-        put(panel, name, (x + 11, legend_y), 0.3, (200, 200, 200))
-    put(panel, f"coverage {crowd_map.coverage(t) * 100:.0f}%", (ox + 200, 13), 0.38, (170, 170, 180))
+        cv.rect(p0[0] + 1, p0[1] + 1, p1[0] - 1, p1[1] - 1, col)
+    sx0, sy0 = to_px(-VENUE_X, 5.5)
+    sx1, sy1 = to_px(BARRIER_X, -5.5)
+    cv.rect(sx0, sy0, sx1, sy1, hud.BORDER)
+    cv.text(((sx0 + sx1) / 2, (sy0 + sy1) / 2), "STAGE", 11, hud.TEXT_3, "bold", anchor="mm")
+    for d in ("alpha", "bravo"):
+        p = to_px(*coordinator.pos[d][:2])
+        if coordinator.beacon[d]:
+            cv.circle(p, SPOTLIGHT_RADIUS * s, hud.ACCENT, 2)
+        cv.circle(p, 9, hud.BG)
+        cv.circle(p, 7, hud.TEXT)
+        cv.text(p, d[0].upper(), 11, hud.BG, "bold", anchor="mm")
+    ly = oy + 2 * VENUE_Y * s + 22
+    x = 24
+    for k in (0, 1, 2, 3, None):
+        cv.rect(x, ly - 6, x + 12, ly + 6, hud.STATUS[k])
+        cv.text((x + 18, ly), hud.STATUS_LABEL[k], 12, hud.TEXT_2, anchor="lm")
+        x += 30 + hud.text_width(hud.STATUS_LABEL[k], 12)
+    cv.circle((x + 8, ly), 6, hud.ACCENT, 2)
+    cv.text((x + 20, ly), "spotlight", 12, hud.TEXT_2, anchor="lm")
+    return cv.finish()
 
-    # --- escalation ladder + metrics (middle) ---
-    mx = 300
-    put(panel, "ESCALATION LADDER", (mx, 18), 0.45, (200, 200, 210))
+
+def draw_bottom(crowd_map, coordinator, t):
+    cv = hud.Canvas(OV_W, BOTTOM_H, hud.PANEL)
+    cv.rect(0, 0, OV_W, 1, hud.BORDER)
     inc = coordinator.incident
     level = inc["level"] if inc else -1
-    for k, name in enumerate(LADDER):
-        y = 34 + k * 30
-        active = k <= level
-        col = (40, 40, 230) if (k == 3 and active) else (30, 160, 255) if active else (70, 72, 80)
-        cv2.rectangle(panel, (mx, y), (mx + 160, y + 24), col, -1 if active else 1)
-        put(panel, f"{k}  {name}", (mx + 8, y + 17), 0.45, (255, 255, 255) if active else (150, 150, 160))
-    z = inc.get("zone") if inc else crowd_map.worst_zone(t)
-    if z is not None and z.status is not None:
-        fmt = lambda v, f: "n/a" if v is None else f.format(v)
-        lines = [f"zone ({z.c[0]:+.0f},{z.c[1]:+.0f}) {STATUS_NAMES[z.status]}  C={z.score:.0f}",
-                 f"density {z.rho:.2f} p/m2   growth {fmt(z.growth, '{:+.2f}')} /min",
-                 f"speed {fmt(z.speed, '{:.2f}')} m/s   stopped {fmt(z.p_stop, '{:.0%}')}",
-                 f"trend +10/+20/+30s: " + ("n/a" if z.pred is None else
-                     " / ".join(f"{z.pred[h]:.1f}" for h in (10, 20, 30)) + " p/m2"),
-                 f"data: {crowd_map.freshness(z, t)}"]
-        for k, line in enumerate(lines):
-            put(panel, line, (mx + 175, 44 + k * 22), 0.4, (210, 210, 220))
-    if inc is None:
-        put(panel, "no active incident", (mx + 175, 44), 0.42, (130, 200, 130))
 
-    # --- security banner + event log (right) ---
-    ex = 760
-    if coordinator.security_alert:
-        cv2.rectangle(panel, (ex, 6), (FRAME_W * 2 - 10, 34), (30, 30, 200), -1)
-        put(panel, "SECURITY TEAM NOTIFIED - assistance requested at stage front", (ex + 8, 26), 0.45,
-            (255, 255, 255), 1)
-    put(panel, "OPERATOR LOG", (ex, 54), 0.45, (200, 200, 210))
-    for k, (et, text) in enumerate(coordinator.events[-7:]):
-        put(panel, f"{et:5.1f}s {text[:84]}", (ex, 74 + k * 21), 0.33, (210, 210, 220))
-    return panel
+    # --- escalation stepper ---
+    x0 = 28
+    hud.section_title(cv, x0, 22, "Escalation")
+    if inc is None:
+        cv.chip(x0 + 100, 17, "Patrolling", hud.BORDER, text_colour=hud.TEXT_2, size=12)
+    for k in range(4):
+        y = 70 + k * 56
+        done = k <= level
+        col = (hud.STATUS[3] if k == 3 else hud.ACCENT) if done else hud.BORDER
+        if k < 3:
+            cv.line((x0 + 10, y + 12), (x0 + 10, y + 44), hud.ACCENT if k < level else hud.BORDER, 2)
+        cv.circle((x0 + 10, y), 9, col, -1 if done else 2)
+        cv.text((x0 + 32, y - 9), STEP_TEXT[k], 16, hud.TEXT if done else hud.TEXT_3,
+                "bold" if k == level else "normal")
+        cv.text((x0 + 32, y + 13), STEP_HINT[k], 12, hud.TEXT_2 if done else hud.TEXT_3)
+
+    # --- hotspot metrics ---
+    x1 = 440
+    cv.rect(x1 - 24, 20, x1 - 23, BOTTOM_H - 20, hud.BORDER)
+    z = inc.get("zone") if inc else crowd_map.worst_zone(t)
+    hud.section_title(cv, x1, 22, "Hotspot" if inc else "Busiest area")
+    if z is not None and z.status is not None:
+        fmt = lambda v, f: "–" if v is None else f.format(v)
+        cv.chip(x1, 46, hud.STATUS_LABEL[z.status], hud.STATUS[z.status])
+        cv.text((x1 + hud.text_width(hud.STATUS_LABEL[z.status], 13, "bold") + 30, 57),
+                f"score C {z.score:.0f} / 100", 14, hud.TEXT_2, anchor="lm")
+        rows = [("Density", f"{z.rho:.2f} people/m²"),
+                ("Growth", fmt(z.growth, "{:+.2f} people/m² per min")),
+                ("Median speed", fmt(z.speed, "{:.2f} m/s")),
+                ("Stopped", fmt(z.p_stop, "{:.0%}")),
+                ("Expected in 20 s", "–" if z.pred is None else f"{z.pred[20]:.1f} people/m²"),
+                ("Data", crowd_map.freshness(z, t))]
+        for k, (label, value) in enumerate(rows):
+            y = 96 + k * 30
+            cv.text((x1, y), label, 14, hud.TEXT_2, anchor="lm")
+            cv.text((x1 + 150, y), value, 14, hud.TEXT, anchor="lm")
+    else:
+        cv.text((x1, 60), "No observations yet", 14, hud.TEXT_3, anchor="lm")
+
+    # --- operator log ---
+    x2 = 836
+    cv.rect(x2 - 24, 20, x2 - 23, BOTTOM_H - 20, hud.BORDER)
+    hud.section_title(cv, x2, 22, "Operator log")
+    y = 52
+    for et, text in coordinator.events[-6:]:
+        text = text.replace(" p/m2", " people/m²").replace("->", "→").replace(" - ", " · ")
+        lines = hud.wrap(text, 13, OV_W - x2 - 90, 2)
+        cv.text((x2, y), f"{et:5.1f}s", 13, hud.TEXT_3, mono=True)
+        for j, line in enumerate(lines):
+            cv.text((x2 + 62, y + 18 * j), line, 13, hud.TEXT)
+        y += 18 * len(lines) + 8
+        if y > BOTTOM_H - 30:
+            break
+    return cv.finish()
 
 
 # ---------------------------------------------------------------------- main loop
@@ -161,6 +233,7 @@ def build_parser():
     ap.add_argument("--no-video", action="store_true",
                     help="skip the overview camera and video file (much faster; drones still use their cameras)")
     ap.add_argument("--quiet", action="store_true", help="only print the final evaluation")
+    ap.add_argument("--no-cards", action="store_true", help="no title and results cards in the video")
     return ap
 
 
@@ -178,7 +251,15 @@ def run(args):
 
     video_path = os.path.join(base, args.out)
     writer = None if args.no_video else cv2.VideoWriter(
-        video_path, cv2.VideoWriter_fourcc(*"mp4v"), args.fps, (FRAME_W * 2, FRAME_H + PANEL_H))
+        video_path, cv2.VideoWriter_fourcc(*"mp4v"), args.fps, (VID_W, VID_H))
+    cards = writer is not None and not getattr(args, "no_cards", False)
+    if cards:
+        card = hud.title_card(VID_W, VID_H, "CrowdFlow",
+                              "Drones that spot a crowd crush forming, and act before it does",
+                              ["Simulation  ·  100 people  ·  2 camera drones  ·  stage-front scenario",
+                               "Drones intervene" if not args.no_interventions else "Baseline: drones only watch"])
+        for _ in range(int(2.5 * args.fps)):
+            writer.write(card)
     frames_per_tick = args.fps // CONTROL_HZ
     steps_per_tick = int(round(1.0 / CONTROL_HZ / env.sim_dt))
     dt = 1.0 / CONTROL_HZ
@@ -201,6 +282,7 @@ def run(args):
             rgb = env.render_camera(f"cam_{d}")
             fault = args.camera_fault and d == "alpha" and 70.0 <= t <= 74.0
             percepts[d] = detector.analyze_frame(rgb, coordinator.pos[d], simulate_dropout=fault)
+            percepts[d]["pose"] = coordinator.pos[d].copy()        # where this frame was taken from
             tp += percepts[d]["latency_ms"]
             cam_ok[d] = percepts[d]["vision_confidence"] >= 0.5
             t0 = time.perf_counter()
@@ -230,8 +312,8 @@ def run(args):
         ann = coordinator.pending_announcement
         if ann is not None:
             n = env.announce(ann["drone"], ann["hotspot"], ann["relief"])
-            last_announcement = (t, "please make space at the front - move to the sides"
-                                 if len(ann["relief"]) else "please stop pushing forward")
+            last_announcement = (t, "Please make space at the front and move to the sides."
+                                 if len(ann["relief"]) else "Please stop pushing forward.", ann["drone"])
             coordinator.log(t, f"{n} people chose to follow the announcement")
             say(f"  [{t:5.1f}s] {coordinator.events[-1][1]}")
 
@@ -251,10 +333,30 @@ def run(args):
                 say(f"t={t:5.1f}s  true peak density {peak:4.2f} p/m2  "
                     f"| alpha {coordinator.state['alpha']}, bravo {coordinator.state['bravo']}")
 
-    if writer is not None:
-        writer.release()
     env.close()
-    return finish(args, base, coordinator, timeline, lat, wall0, video_path, say)
+    summary = finish(args, base, coordinator, timeline, lat, wall0, video_path, say)
+    if writer is not None:
+        if cards:
+            card = results_card(summary)
+            for _ in range(int(4 * args.fps)):
+                writer.write(card)
+        writer.release()
+    return summary
+
+
+def results_card(summary):
+    alert = next((e["t"] for e in summary["events"] if e["text"].startswith("MONITOR")), None)
+    stats = [(f"{summary['gt_max_peak_density']:.1f}", "peak density, people/m²"),
+             (f"{summary['gt_seconds_at_or_above_4']} s", "at ≥ 4 people/m²"),
+             (f"{summary['gt_seconds_at_or_above_5']} s", "at ≥ 5 people/m² (dangerous)")]
+    if summary["interventions"]:
+        stats.append((f"{alert:.0f} s" if alert is not None else "–", "first alert"))
+    heading = "This run, with drones intervening" if summary["interventions"] else \
+        "This run, with drones only watching"
+    return hud.end_card(VID_W, VID_H, heading, stats,
+                        [f"Seed {summary['seed']}  ·  {summary['duration_s']:.0f} s  ·  densities from simulator "
+                         "ground truth, measured after the run",
+                         "Simulation prototype for decision support, not a validated crowd-safety system"])
 
 
 def write_frames(env, writer, args, coordinator, crowd_map, detector, percepts, tracks,
@@ -262,15 +364,19 @@ def write_frames(env, writer, args, coordinator, crowd_map, detector, percepts, 
     """Advances physics for one control tick while writing the video frames."""
     sub = steps_per_tick // frames_per_tick
     show = coordinator.incident["responder"] if coordinator.incident else "alpha"
-    drone_img = draw_drone_pane(percepts[show], tracks[show], show, coordinator.pos[show],
-                                coordinator.state[show], detector, crowd_map, t,
-                                coordinator.beacon[show])
-    panel = draw_panel(crowd_map, coordinator, t, coordinator.pos, coordinator.beacon)
+    frame = np.zeros((VID_H, VID_W, 3), np.uint8)
+    frame[HEADER_H:HEADER_H + FRAME_H, OV_W:] = draw_drone_cam(
+        percepts[show], tracks[show], show, percepts[show]["pose"], coordinator.state[show],
+        detector, crowd_map, t, coordinator.beacon[show])
+    frame[HEADER_H + FRAME_H:, OV_W:] = draw_map(crowd_map, coordinator, t)
+    frame[HEADER_H + OV_H:, :OV_W] = draw_bottom(crowd_map, coordinator, t)
     for f in range(frames_per_tick):
         env.step(coordinator.pos, substeps=sub)
-        world = draw_world_pane(env.render_camera("world_cam"), env.data.time, args.duration,
-                                coordinator, not args.no_interventions, last_announcement)
-        writer.write(np.vstack([np.hstack([world, drone_img]), panel]))
+        now = env.data.time
+        frame[:HEADER_H] = draw_header(now, args.duration, not args.no_interventions, coordinator)
+        frame[HEADER_H:HEADER_H + OV_H, :OV_W] = draw_overview(env.render_camera("world_cam"), env,
+                                                                coordinator, now, last_announcement)
+        writer.write(frame)
     leftover = steps_per_tick - sub * frames_per_tick
     if leftover:
         env.step(coordinator.pos, substeps=leftover)

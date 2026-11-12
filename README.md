@@ -20,9 +20,9 @@ intervening:
 | | Drones only watch | Drones intervene |
 |---|---|---|
 | Time at **≥ 5 people/m²** (dangerous), mean | 60.4 s | **0.1 s** |
-| Time at **≥ 4 people/m²** (movement restricted), mean | 65.5 s | **7.2 s** (−89%) |
+| Time at **≥ 4 people/m²** (movement restricted), mean | 65.5 s | **6.8 s** (−90%) |
 | Crowds that ever reached 5 people/m² | 10 / 10 | **1 / 10** (for 1 s) |
-| Mean peak density | 6.05 people/m² | **4.68 people/m²** |
+| Mean peak density | 6.05 people/m² | **4.64 people/m²** |
 
 <p>
   <img src="results/density_timeline.png" width="49%" alt="Peak density over time for one crowd, with and without drones">
@@ -31,7 +31,8 @@ intervening:
 
 **How it got there.** The first version only reacted once an area was already crowded. Adding a short-range
 prediction (see below) moved the first alert earlier (21.3 s → 18.6 s on average) and cut the number of
-crowds that reached 5 people/m² from 4/10 to 1/10. Both evaluations are in `results/`.
+crowds that reached 5 people/m² from 4/10 to 1/10 (a promising sign, though 10 crowds is too few to
+prove that difference). Both evaluations are in `results/`.
 
 **How to read these numbers.** Densities are measured *after* each run from simulator ground truth (most
 people inside any 1 m-radius circle); the drones never see ground truth. Crowd-safety guidance commonly
@@ -63,7 +64,8 @@ flowchart LR
 
 1. **Perception** (`perception/density_detector.py`): each drone's downward camera is segmented for
    heads. In a dense crowd bodies merge into one blob but heads stay separate, so counting stays reliable.
-   Heads are projected onto the floor using the drone's pose.
+   Heads are projected onto the floor using the drone's pose. Measured against ground truth over 2,343
+   heads: 100% recall, 99.9% precision, 2 cm median position error.
 2. **Tracking** (`perception/tracker.py`): detections are linked across frames (Hungarian matching,
    0.4 m gate), giving each person a temporary ID, a speed and a heading.
 3. **Fleet crowd map** (`perception/zone_analytics.py`): both drones' tracks are fused into overlapping
@@ -112,7 +114,7 @@ Requires Python 3.9+. On macOS this works out of the box; on a headless Linux ma
 ```bash
 pip install -r requirements.txt
 
-python run_simulation.py                       # one 90 s run -> submission_video.mp4 + run_summary.json
+python run_simulation.py                       # one 90 s run -> submission_video.mp4 (1920×1080) + run_summary.json
 python run_simulation.py --no-interventions    # baseline: drones only watch
 python evaluate.py --seeds 10 --workers 4      # many crowds, on vs off -> results/evaluation.json
 python plot_results.py                         # plots from the evaluation -> results/*.png
@@ -120,12 +122,14 @@ python side_by_side.py --clip 15 50 --gif      # comparison video + short clip a
 ```
 
 Useful options for `run_simulation.py`: `--seed`, `--duration`, `--fps` (multiple of 10), `--no-video`
-(numbers only, faster, identical results), `--quiet`, `--camera-fault` (corrupts Alpha's camera at 70–74 s
-to show the failsafe: spotlight off, climb to 8 m and hold).
+(numbers only, faster, identical results), `--no-cards` (skip the title and results cards), `--quiet`,
+`--camera-fault` (corrupts Alpha's camera at 70–74 s to show the failsafe: spotlight off, climb to 8 m
+and hold).
 
-The video shows the overview, the active drone's camera (tracked people coloured moving / slow / stopped)
-and an operator panel: the fleet crowd map, the escalation ladder, the worst zone's metrics and trend, and
-the operator log.
+The single-run video (1920×1080) opens with a title card and ends with that run's results. In between it
+shows the venue overview with the drones labelled by role, the active drone's camera (tracked people,
+with those stopped for 3 s+ highlighted), the fleet crowd map, the escalation steps, the hotspot's
+measurements and the operator log. All drawing lives in `viz/hud.py`, so both videos share one style.
 
 ## Repository
 
@@ -138,6 +142,7 @@ run_simulation.py          main loop, video + operator panel, per-run summary
 evaluate.py                multi-crowd comparison: drones intervening vs only watching
 plot_results.py            timeline and per-crowd plots from evaluate.py results
 side_by_side.py            comparison video (same crowd, without vs with drones) + clip/GIF
+viz/hud.py                 shared video style: fonts, colours, layout helpers, title and results cards
 results/                   evaluation results and plots used in this README
 run_all.py, docs/          the original hackathon demo and its pitch notes (earlier 18-person version)
 ```
@@ -146,9 +151,9 @@ run_all.py, docs/          the original hackathon demo and its pitch notes (earl
 
 * **Simulation only:** simple cylinder pedestrians, stylised pushing and compliance, one indoor venue,
   one scenario.
-* **Perception shortcut:** heads share one colour in the simulator. A real system would need a learned
-  person detector (e.g. YOLO), which is the next planned step.
-* **Over-cautious escalation:** security is still alerted in 9 of 10 crowds. In a real venue an alert that
+* **Perception shortcut:** every head shares one skin tone in the simulator, which no clothing or surface
+  uses. A real system would need a learned person detector (e.g. YOLO), which is the next planned step.
+* **Over-cautious escalation:** security is still alerted in 7 of 10 crowds. In a real venue an alert that
   almost always fires would soon be ignored.
 * **Not modelled:** battery life, whether the drone speaker is audible over concert audio, wind, lighting,
   and the safety of flying over people.

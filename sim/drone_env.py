@@ -52,6 +52,9 @@ class CrowdFleetEnv:
         self.frame_width = frame_width
         self.frame_height = frame_height
         self.renderer = mujoco.Renderer(self.model, height=frame_height, width=frame_width) if render else None
+        # The overview camera renders at the model's offscreen size (1280x720, see generate_arena.py)
+        self.world_renderer = (mujoco.Renderer(self.model, height=self.model.vis.global_.offheight,
+                                               width=self.model.vis.global_.offwidth) if render else None)
         self.sim_dt = self.model.opt.timestep
         self.rng = np.random.default_rng(seed)
 
@@ -269,12 +272,14 @@ class CrowdFleetEnv:
             mujoco.mj_step(self.model, self.data)
 
     def render_camera(self, cam_name: str) -> np.ndarray:
-        self.renderer.update_scene(self.data, camera=cam_name)
-        return self.renderer.render().copy()
+        r = self.world_renderer if cam_name == "world_cam" else self.renderer
+        r.update_scene(self.data, camera=cam_name)
+        return r.render().copy()
 
     def close(self):
-        if self.renderer is not None:
-            self.renderer.close()
+        for r in (self.renderer, self.world_renderer):
+            if r is not None:
+                r.close()
 
     # ------------------------------------------------------------------ OFFLINE EVALUATION ONLY
     def gt_peak_local_density(self, radius: float = 1.0):

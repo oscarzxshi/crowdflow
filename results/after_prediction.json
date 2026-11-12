@@ -12,12 +12,12 @@
  },
  "drones_intervene": {
   "runs": 10,
-  "peak_mean": 4.677,
+  "peak_mean": 4.644999999999999,
   "peak_max": 5.09,
-  "s_ge4_mean": 7.2,
+  "s_ge4_mean": 6.8,
   "s_ge5_mean": 0.1,
   "runs_reaching_5": 1,
-  "security_alerts": 9,
+  "security_alerts": 7,
   "first_alert_mean_s": 18.580000000000002
  },
  "runs": [
@@ -34,7 +34,7 @@
    "seed": 1,
    "interventions": true,
    "peak": 4.77,
-   "s_ge4": 7,
+   "s_ge4": 6,
    "s_ge5": 0,
    "security": true,
    "first_alert_s": 19.1
@@ -126,7 +126,7 @@
    "peak": 4.77,
    "s_ge4": 4,
    "s_ge5": 0,
-   "security": true,
+   "security": false,
    "first_alert_s": 17.1
   },
   {
@@ -141,10 +141,10 @@
   {
    "seed": 7,
    "interventions": true,
-   "peak": 4.14,
-   "s_ge4": 1,
+   "peak": 3.82,
+   "s_ge4": 0,
    "s_ge5": 0,
-   "security": true,
+   "security": false,
    "first_alert_s": 13.0
   },
   {
@@ -196,7 +196,7 @@
    "seed": 10,
    "interventions": true,
    "peak": 4.77,
-   "s_ge4": 10,
+   "s_ge4": 8,
    "s_ge5": 0,
    "security": true,
    "first_alert_s": 23.1
