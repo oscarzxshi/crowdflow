@@ -80,600 +80,800 @@
             <joint name="ped_0_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_0_geom" type="cylinder" size="0.22 0.40" rgba="0.16 0.20 0.32 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_0_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_0_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_0_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_1" pos="0 0 0.45">
             <joint name="ped_1_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_1_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_1_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.23 0.25 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_1_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_1_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_1_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_2" pos="0 0 0.45">
             <joint name="ped_2_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_2_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_2_geom" type="cylinder" size="0.22 0.40" rgba="0.32 0.36 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_2_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_2_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_2_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_3" pos="0 0 0.45">
             <joint name="ped_3_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_3_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_3_geom" type="cylinder" size="0.22 0.40" rgba="0.24 0.28 0.21 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_3_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_3_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_3_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_4" pos="0 0 0.45">
             <joint name="ped_4_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_4_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_4_geom" type="cylinder" size="0.22 0.40" rgba="0.40 0.13 0.20 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_4_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_4_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_4_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_5" pos="0 0 0.45">
             <joint name="ped_5_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_5_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_5_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.30 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_5_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_5_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_5_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_6" pos="0 0 0.45">
             <joint name="ped_6_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_6_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_6_geom" type="cylinder" size="0.22 0.40" rgba="0.60 0.61 0.64 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_6_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_6_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_6_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_7" pos="0 0 0.45">
             <joint name="ped_7_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_7_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_7_geom" type="cylinder" size="0.22 0.40" rgba="0.10 0.10 0.11 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_7_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_7_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_7_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_8" pos="0 0 0.45">
             <joint name="ped_8_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_8_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_8_geom" type="cylinder" size="0.22 0.40" rgba="0.16 0.20 0.32 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_8_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_8_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_8_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_9" pos="0 0 0.45">
             <joint name="ped_9_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_9_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_9_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.23 0.25 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_9_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_9_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_9_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_10" pos="0 0 0.45">
             <joint name="ped_10_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_10_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_10_geom" type="cylinder" size="0.22 0.40" rgba="0.32 0.36 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_10_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_10_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_10_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_11" pos="0 0 0.45">
             <joint name="ped_11_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_11_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_11_geom" type="cylinder" size="0.22 0.40" rgba="0.24 0.28 0.21 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_11_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_11_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_11_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_12" pos="0 0 0.45">
             <joint name="ped_12_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_12_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_12_geom" type="cylinder" size="0.22 0.40" rgba="0.40 0.13 0.20 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_12_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_12_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_12_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_13" pos="0 0 0.45">
             <joint name="ped_13_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_13_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_13_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.30 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_13_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_13_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_13_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_14" pos="0 0 0.45">
             <joint name="ped_14_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_14_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_14_geom" type="cylinder" size="0.22 0.40" rgba="0.60 0.61 0.64 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_14_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_14_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_14_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_15" pos="0 0 0.45">
             <joint name="ped_15_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_15_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_15_geom" type="cylinder" size="0.22 0.40" rgba="0.10 0.10 0.11 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_15_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_15_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_15_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_16" pos="0 0 0.45">
             <joint name="ped_16_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_16_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_16_geom" type="cylinder" size="0.22 0.40" rgba="0.16 0.20 0.32 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_16_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_16_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_16_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_17" pos="0 0 0.45">
             <joint name="ped_17_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_17_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_17_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.23 0.25 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_17_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_17_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_17_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_18" pos="0 0 0.45">
             <joint name="ped_18_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_18_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_18_geom" type="cylinder" size="0.22 0.40" rgba="0.32 0.36 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_18_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_18_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_18_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_19" pos="0 0 0.45">
             <joint name="ped_19_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_19_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_19_geom" type="cylinder" size="0.22 0.40" rgba="0.24 0.28 0.21 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_19_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_19_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_19_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_20" pos="0 0 0.45">
             <joint name="ped_20_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_20_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_20_geom" type="cylinder" size="0.22 0.40" rgba="0.40 0.13 0.20 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_20_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_20_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_20_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_21" pos="0 0 0.45">
             <joint name="ped_21_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_21_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_21_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.30 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_21_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_21_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_21_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_22" pos="0 0 0.45">
             <joint name="ped_22_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_22_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_22_geom" type="cylinder" size="0.22 0.40" rgba="0.60 0.61 0.64 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_22_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_22_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_22_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_23" pos="0 0 0.45">
             <joint name="ped_23_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_23_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_23_geom" type="cylinder" size="0.22 0.40" rgba="0.10 0.10 0.11 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_23_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_23_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_23_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_24" pos="0 0 0.45">
             <joint name="ped_24_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_24_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_24_geom" type="cylinder" size="0.22 0.40" rgba="0.16 0.20 0.32 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_24_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_24_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_24_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_25" pos="0 0 0.45">
             <joint name="ped_25_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_25_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_25_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.23 0.25 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_25_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_25_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_25_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_26" pos="0 0 0.45">
             <joint name="ped_26_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_26_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_26_geom" type="cylinder" size="0.22 0.40" rgba="0.32 0.36 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_26_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_26_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_26_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_27" pos="0 0 0.45">
             <joint name="ped_27_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_27_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_27_geom" type="cylinder" size="0.22 0.40" rgba="0.24 0.28 0.21 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_27_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_27_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_27_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_28" pos="0 0 0.45">
             <joint name="ped_28_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_28_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_28_geom" type="cylinder" size="0.22 0.40" rgba="0.40 0.13 0.20 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_28_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_28_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_28_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_29" pos="0 0 0.45">
             <joint name="ped_29_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_29_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_29_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.30 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_29_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_29_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_29_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_30" pos="0 0 0.45">
             <joint name="ped_30_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_30_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_30_geom" type="cylinder" size="0.22 0.40" rgba="0.60 0.61 0.64 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_30_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_30_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_30_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_31" pos="0 0 0.45">
             <joint name="ped_31_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_31_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_31_geom" type="cylinder" size="0.22 0.40" rgba="0.10 0.10 0.11 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_31_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_31_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_31_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_32" pos="0 0 0.45">
             <joint name="ped_32_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_32_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_32_geom" type="cylinder" size="0.22 0.40" rgba="0.16 0.20 0.32 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_32_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_32_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_32_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_33" pos="0 0 0.45">
             <joint name="ped_33_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_33_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_33_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.23 0.25 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_33_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_33_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_33_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_34" pos="0 0 0.45">
             <joint name="ped_34_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_34_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_34_geom" type="cylinder" size="0.22 0.40" rgba="0.32 0.36 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_34_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_34_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_34_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_35" pos="0 0 0.45">
             <joint name="ped_35_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_35_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_35_geom" type="cylinder" size="0.22 0.40" rgba="0.24 0.28 0.21 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_35_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_35_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_35_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_36" pos="0 0 0.45">
             <joint name="ped_36_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_36_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_36_geom" type="cylinder" size="0.22 0.40" rgba="0.40 0.13 0.20 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_36_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_36_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_36_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_37" pos="0 0 0.45">
             <joint name="ped_37_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_37_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_37_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.30 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_37_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_37_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_37_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_38" pos="0 0 0.45">
             <joint name="ped_38_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_38_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_38_geom" type="cylinder" size="0.22 0.40" rgba="0.60 0.61 0.64 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_38_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_38_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_38_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_39" pos="0 0 0.45">
             <joint name="ped_39_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_39_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_39_geom" type="cylinder" size="0.22 0.40" rgba="0.10 0.10 0.11 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_39_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_39_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_39_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_40" pos="0 0 0.45">
             <joint name="ped_40_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_40_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_40_geom" type="cylinder" size="0.22 0.40" rgba="0.16 0.20 0.32 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_40_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_40_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_40_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_41" pos="0 0 0.45">
             <joint name="ped_41_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_41_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_41_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.23 0.25 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_41_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_41_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_41_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_42" pos="0 0 0.45">
             <joint name="ped_42_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_42_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_42_geom" type="cylinder" size="0.22 0.40" rgba="0.32 0.36 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_42_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_42_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_42_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_43" pos="0 0 0.45">
             <joint name="ped_43_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_43_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_43_geom" type="cylinder" size="0.22 0.40" rgba="0.24 0.28 0.21 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_43_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_43_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_43_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_44" pos="0 0 0.45">
             <joint name="ped_44_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_44_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_44_geom" type="cylinder" size="0.22 0.40" rgba="0.40 0.13 0.20 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_44_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_44_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_44_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_45" pos="0 0 0.45">
             <joint name="ped_45_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_45_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_45_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.30 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_45_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_45_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_45_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_46" pos="0 0 0.45">
             <joint name="ped_46_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_46_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_46_geom" type="cylinder" size="0.22 0.40" rgba="0.60 0.61 0.64 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_46_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_46_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_46_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_47" pos="0 0 0.45">
             <joint name="ped_47_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_47_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_47_geom" type="cylinder" size="0.22 0.40" rgba="0.10 0.10 0.11 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_47_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_47_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_47_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_48" pos="0 0 0.45">
             <joint name="ped_48_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_48_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_48_geom" type="cylinder" size="0.22 0.40" rgba="0.16 0.20 0.32 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_48_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_48_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_48_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_49" pos="0 0 0.45">
             <joint name="ped_49_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_49_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_49_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.23 0.25 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_49_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_49_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_49_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_50" pos="0 0 0.45">
             <joint name="ped_50_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_50_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_50_geom" type="cylinder" size="0.22 0.40" rgba="0.32 0.36 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_50_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_50_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_50_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_51" pos="0 0 0.45">
             <joint name="ped_51_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_51_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_51_geom" type="cylinder" size="0.22 0.40" rgba="0.24 0.28 0.21 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_51_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_51_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_51_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_52" pos="0 0 0.45">
             <joint name="ped_52_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_52_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_52_geom" type="cylinder" size="0.22 0.40" rgba="0.40 0.13 0.20 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_52_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_52_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_52_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_53" pos="0 0 0.45">
             <joint name="ped_53_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_53_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_53_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.30 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_53_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_53_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_53_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_54" pos="0 0 0.45">
             <joint name="ped_54_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_54_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_54_geom" type="cylinder" size="0.22 0.40" rgba="0.60 0.61 0.64 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_54_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_54_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_54_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_55" pos="0 0 0.45">
             <joint name="ped_55_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_55_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_55_geom" type="cylinder" size="0.22 0.40" rgba="0.10 0.10 0.11 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_55_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_55_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_55_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_56" pos="0 0 0.45">
             <joint name="ped_56_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_56_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_56_geom" type="cylinder" size="0.22 0.40" rgba="0.16 0.20 0.32 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_56_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_56_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_56_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_57" pos="0 0 0.45">
             <joint name="ped_57_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_57_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_57_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.23 0.25 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_57_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_57_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_57_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_58" pos="0 0 0.45">
             <joint name="ped_58_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_58_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_58_geom" type="cylinder" size="0.22 0.40" rgba="0.32 0.36 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_58_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_58_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_58_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_59" pos="0 0 0.45">
             <joint name="ped_59_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_59_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_59_geom" type="cylinder" size="0.22 0.40" rgba="0.24 0.28 0.21 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_59_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_59_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_59_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_60" pos="0 0 0.45">
             <joint name="ped_60_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_60_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_60_geom" type="cylinder" size="0.22 0.40" rgba="0.40 0.13 0.20 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_60_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_60_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_60_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_61" pos="0 0 0.45">
             <joint name="ped_61_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_61_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_61_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.30 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_61_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_61_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_61_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_62" pos="0 0 0.45">
             <joint name="ped_62_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_62_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_62_geom" type="cylinder" size="0.22 0.40" rgba="0.60 0.61 0.64 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_62_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_62_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_62_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_63" pos="0 0 0.45">
             <joint name="ped_63_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_63_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_63_geom" type="cylinder" size="0.22 0.40" rgba="0.10 0.10 0.11 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_63_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_63_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_63_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_64" pos="0 0 0.45">
             <joint name="ped_64_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_64_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_64_geom" type="cylinder" size="0.22 0.40" rgba="0.16 0.20 0.32 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_64_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_64_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_64_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_65" pos="0 0 0.45">
             <joint name="ped_65_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_65_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_65_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.23 0.25 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_65_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_65_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_65_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_66" pos="0 0 0.45">
             <joint name="ped_66_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_66_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_66_geom" type="cylinder" size="0.22 0.40" rgba="0.32 0.36 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_66_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_66_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_66_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_67" pos="0 0 0.45">
             <joint name="ped_67_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_67_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_67_geom" type="cylinder" size="0.22 0.40" rgba="0.24 0.28 0.21 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_67_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_67_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_67_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_68" pos="0 0 0.45">
             <joint name="ped_68_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_68_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_68_geom" type="cylinder" size="0.22 0.40" rgba="0.40 0.13 0.20 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_68_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_68_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_68_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_69" pos="0 0 0.45">
             <joint name="ped_69_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_69_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_69_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.30 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_69_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_69_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_69_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_70" pos="0 0 0.45">
             <joint name="ped_70_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_70_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_70_geom" type="cylinder" size="0.22 0.40" rgba="0.60 0.61 0.64 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_70_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_70_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_70_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_71" pos="0 0 0.45">
             <joint name="ped_71_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_71_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_71_geom" type="cylinder" size="0.22 0.40" rgba="0.10 0.10 0.11 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_71_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_71_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_71_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_72" pos="0 0 0.45">
             <joint name="ped_72_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_72_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_72_geom" type="cylinder" size="0.22 0.40" rgba="0.16 0.20 0.32 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_72_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_72_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_72_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_73" pos="0 0 0.45">
             <joint name="ped_73_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_73_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_73_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.23 0.25 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_73_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_73_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_73_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_74" pos="0 0 0.45">
             <joint name="ped_74_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_74_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_74_geom" type="cylinder" size="0.22 0.40" rgba="0.32 0.36 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_74_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_74_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_74_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_75" pos="0 0 0.45">
             <joint name="ped_75_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_75_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_75_geom" type="cylinder" size="0.22 0.40" rgba="0.24 0.28 0.21 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_75_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_75_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_75_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_76" pos="0 0 0.45">
             <joint name="ped_76_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_76_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_76_geom" type="cylinder" size="0.22 0.40" rgba="0.40 0.13 0.20 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_76_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_76_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_76_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_77" pos="0 0 0.45">
             <joint name="ped_77_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_77_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_77_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.30 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_77_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_77_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_77_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_78" pos="0 0 0.45">
             <joint name="ped_78_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_78_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_78_geom" type="cylinder" size="0.22 0.40" rgba="0.60 0.61 0.64 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_78_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_78_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_78_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_79" pos="0 0 0.45">
             <joint name="ped_79_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_79_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_79_geom" type="cylinder" size="0.22 0.40" rgba="0.10 0.10 0.11 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_79_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_79_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_79_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_80" pos="0 0 0.45">
             <joint name="ped_80_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_80_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_80_geom" type="cylinder" size="0.22 0.40" rgba="0.16 0.20 0.32 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_80_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_80_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_80_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_81" pos="0 0 0.45">
             <joint name="ped_81_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_81_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_81_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.23 0.25 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_81_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_81_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_81_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_82" pos="0 0 0.45">
             <joint name="ped_82_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_82_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_82_geom" type="cylinder" size="0.22 0.40" rgba="0.32 0.36 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_82_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_82_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_82_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_83" pos="0 0 0.45">
             <joint name="ped_83_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_83_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_83_geom" type="cylinder" size="0.22 0.40" rgba="0.24 0.28 0.21 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_83_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_83_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_83_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_84" pos="0 0 0.45">
             <joint name="ped_84_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_84_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_84_geom" type="cylinder" size="0.22 0.40" rgba="0.40 0.13 0.20 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_84_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_84_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_84_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_85" pos="0 0 0.45">
             <joint name="ped_85_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_85_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_85_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.30 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_85_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_85_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_85_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_86" pos="0 0 0.45">
             <joint name="ped_86_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_86_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_86_geom" type="cylinder" size="0.22 0.40" rgba="0.60 0.61 0.64 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_86_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_86_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_86_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_87" pos="0 0 0.45">
             <joint name="ped_87_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_87_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_87_geom" type="cylinder" size="0.22 0.40" rgba="0.10 0.10 0.11 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_87_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_87_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_87_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_88" pos="0 0 0.45">
             <joint name="ped_88_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_88_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_88_geom" type="cylinder" size="0.22 0.40" rgba="0.16 0.20 0.32 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_88_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_88_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_88_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_89" pos="0 0 0.45">
             <joint name="ped_89_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_89_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_89_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.23 0.25 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_89_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_89_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_89_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_90" pos="0 0 0.45">
             <joint name="ped_90_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_90_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_90_geom" type="cylinder" size="0.22 0.40" rgba="0.32 0.36 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_90_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_90_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_90_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_91" pos="0 0 0.45">
             <joint name="ped_91_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_91_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_91_geom" type="cylinder" size="0.22 0.40" rgba="0.24 0.28 0.21 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_91_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_91_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_91_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_92" pos="0 0 0.45">
             <joint name="ped_92_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_92_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_92_geom" type="cylinder" size="0.22 0.40" rgba="0.40 0.13 0.20 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_92_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_92_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_92_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_93" pos="0 0 0.45">
             <joint name="ped_93_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_93_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_93_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.30 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_93_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_93_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_93_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_94" pos="0 0 0.45">
             <joint name="ped_94_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_94_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_94_geom" type="cylinder" size="0.22 0.40" rgba="0.60 0.61 0.64 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_94_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_94_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_94_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_95" pos="0 0 0.45">
             <joint name="ped_95_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_95_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_95_geom" type="cylinder" size="0.22 0.40" rgba="0.10 0.10 0.11 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_95_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_95_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_95_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_96" pos="0 0 0.45">
             <joint name="ped_96_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_96_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_96_geom" type="cylinder" size="0.22 0.40" rgba="0.16 0.20 0.32 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_96_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_96_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_96_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_97" pos="0 0 0.45">
             <joint name="ped_97_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_97_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_97_geom" type="cylinder" size="0.22 0.40" rgba="0.22 0.23 0.25 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_97_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_97_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_97_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_98" pos="0 0 0.45">
             <joint name="ped_98_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_98_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_98_geom" type="cylinder" size="0.22 0.40" rgba="0.32 0.36 0.42 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_98_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_98_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_98_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
         <body name="ped_99" pos="0 0 0.45">
             <joint name="ped_99_jx" type="slide" axis="1 0 0"/>
             <joint name="ped_99_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_99_geom" type="cylinder" size="0.22 0.40" rgba="0.24 0.28 0.21 1" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_99_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="0.88 0.66 0.46 1" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_99_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_99_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>
     </worldbody>
 

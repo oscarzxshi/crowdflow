@@ -1,0 +1,30 @@
+{
+ "colour/standard": {
+  "recall": 1.0,
+  "precision": 0.9999129602228218,
+  "median_error_m": 0.022234525885005005,
+  "latency_ms": 2.164917066693306,
+  "heads": 11488
+ },
+ "yolo/standard": {
+  "recall": 1.0,
+  "precision": 0.9993910395824271,
+  "median_error_m": 0.0030197052601731913,
+  "latency_ms": 21.155124995857477,
+  "heads": 11488
+ },
+ "colour/varied": {
+  "recall": 0.40537952646239556,
+  "precision": 0.7883866598950398,
+  "median_error_m": 0.058357695817181886,
+  "latency_ms": 2.0897919312119484,
+  "heads": 11488
+ },
+ "yolo/varied": {
+  "recall": 1.0,
+  "precision": 0.9983488311462588,
+  "median_error_m": 0.0038715605351505545,
+  "latency_ms": 21.01591695100069,
+  "heads": 11488
+ }
+}

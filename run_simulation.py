@@ -50,12 +50,12 @@ STEP_HINT = ["a drone moves in to inspect", "the area is marked with a red light
 
 
 # ---------------------------------------------------------------------- drawing
-def draw_header(t, duration, enabled, coordinator):
+def draw_header(t, duration, enabled, coordinator, detail=""):
     cv = hud.Canvas(VID_W, HEADER_H, hud.BG)
     cv.rect(0, HEADER_H - 1, VID_W, HEADER_H, hud.BORDER)
     cv.text((28, HEADER_H / 2), "CrowdFlow", 22, hud.TEXT, "bold", anchor="lm")
-    cv.text((28 + hud.text_width("CrowdFlow", 22, "bold") + 20, HEADER_H / 2), "Stage-front scenario  ·  100 people  ·  2 drones  ·  simulation",
-            15, hud.TEXT_2, anchor="lm")
+    cv.text((28 + hud.text_width("CrowdFlow", 22, "bold") + 20, HEADER_H / 2),
+            "Stage-front scenario  ·  100 people  ·  2 drones  ·  simulation" + detail, 15, hud.TEXT_2, anchor="lm")
     x = VID_W - 28
     x -= hud.text_width(f"{t:5.1f} s / {duration:.0f} s", 16, mono=True)
     cv.text((x, HEADER_H / 2), f"{t:5.1f} s / {duration:.0f} s", 16, hud.TEXT, mono=True, anchor="lm")
@@ -228,12 +228,17 @@ def build_parser():
     ap.add_argument("--seed", type=int, default=2026)
     ap.add_argument("--no-interventions", action="store_true", help="baseline: observe only")
     ap.add_argument("--camera-fault", action="store_true", help="inject Alpha camera fault 70-74 s")
-    ap.add_argument("--out", default="submission_video.mp4")
-    ap.add_argument("--summary", default="run_summary.json")
+    ap.add_argument("--out", default=os.path.join("outputs", "submission_video.mp4"))
+    ap.add_argument("--summary", default=os.path.join("outputs", "run_summary.json"))
     ap.add_argument("--no-video", action="store_true",
                     help="skip the overview camera and video file (much faster; drones still use their cameras)")
     ap.add_argument("--quiet", action="store_true", help="only print the final evaluation")
     ap.add_argument("--no-cards", action="store_true", help="no title and results cards in the video")
+    ap.add_argument("--detector", choices=("colour", "yolo"), default="colour",
+                    help="colour: head-colour segmentation; yolo: learned detector (models/head_detector.pt)")
+    ap.add_argument("--appearance", choices=("standard", "varied"), default="standard",
+                    help="varied: different skin tones, hair, caps and clothing (breaks the colour detector)")
+    ap.add_argument("--model", default=None, help="YOLO weights (default models/head_detector.pt)")
     return ap
 
 
@@ -243,13 +248,20 @@ def run(args):
     say = (lambda *a, **k: None) if args.quiet else print
 
     base = os.path.dirname(os.path.abspath(__file__))
-    env = CrowdFleetEnv(frame_width=FRAME_W, frame_height=FRAME_H, seed=args.seed)
-    detector = DensityPerceptionEngine(FRAME_W, FRAME_H)
+    env = CrowdFleetEnv(frame_width=FRAME_W, frame_height=FRAME_H, seed=args.seed,
+                        appearance=getattr(args, "appearance", "standard"))
+    if getattr(args, "detector", "colour") == "yolo":
+        from perception.yolo_detector import YoloPerceptionEngine, DEFAULT_MODEL
+        detector = YoloPerceptionEngine(FRAME_W, FRAME_H, model_path=args.model or DEFAULT_MODEL)
+    else:
+        detector = DensityPerceptionEngine(FRAME_W, FRAME_H)
     trackers = {"alpha": MultiTracker(), "bravo": MultiTracker()}
     crowd_map = FleetCrowdMap()
     coordinator = FleetCoordinator(interventions_enabled=not args.no_interventions)
 
     video_path = os.path.join(base, args.out)
+    for path in (video_path, os.path.join(base, args.summary)):        # e.g. outputs/
+        os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
     writer = None if args.no_video else cv2.VideoWriter(
         video_path, cv2.VideoWriter_fourcc(*"mp4v"), args.fps, (VID_W, VID_H))
     cards = writer is not None and not getattr(args, "no_cards", False)
@@ -373,7 +385,9 @@ def write_frames(env, writer, args, coordinator, crowd_map, detector, percepts, 
     for f in range(frames_per_tick):
         env.step(coordinator.pos, substeps=sub)
         now = env.data.time
-        frame[:HEADER_H] = draw_header(now, args.duration, not args.no_interventions, coordinator)
+        detail = ("  ·  YOLO detector" if getattr(args, "detector", "colour") == "yolo" else "") + \
+                 ("  ·  varied crowd" if getattr(args, "appearance", "standard") == "varied" else "")
+        frame[:HEADER_H] = draw_header(now, args.duration, not args.no_interventions, coordinator, detail)
         frame[HEADER_H:HEADER_H + OV_H, :OV_W] = draw_overview(env.render_camera("world_cam"), env,
                                                                 coordinator, now, last_announcement)
         writer.write(frame)
@@ -388,6 +402,8 @@ def finish(args, base, coordinator, timeline, lat, wall0, video_path, say):
         "interventions": not args.no_interventions,
         "seed": args.seed,
         "duration_s": args.duration,
+        "detector": getattr(args, "detector", "colour"),
+        "appearance": getattr(args, "appearance", "standard"),
         "gt_max_peak_density": float(peaks.max()),
         "gt_seconds_at_or_above_4": int((peaks >= 4.0).sum()),
         "gt_seconds_at_or_above_5": int((peaks >= 5.0).sum()),

@@ -7,7 +7,7 @@ Side-by-side comparison video (1920x1080): the same crowd (same seed) without an
     bottom live chart of the true peak density in both runs, with the escalation steps marked
 
 Usage:
-    python side_by_side.py                         # seed 5, 90 s -> side_by_side.mp4
+    python side_by_side.py                         # seed 5, 90 s -> outputs/side_by_side.mp4
     python side_by_side.py --seed 5 --fps 20
     python side_by_side.py --clip 15 50 --gif      # also export a short clip (+ GIF) for posts
 
@@ -30,14 +30,16 @@ CHART_Y = HEADER_H + PANE_H
 CHART_H = H - CHART_Y
 
 
-def simulate(seed, interventions, duration, fps, base):
+def simulate(seed, interventions, duration, fps, base, opts=None):
     args = rs.build_parser().parse_args([])
+    if opts is not None:
+        args.detector, args.appearance, args.model = opts.detector, opts.appearance, opts.model
     tag = "on" if interventions else "off"
     args.seed, args.duration, args.fps = seed, duration, fps
     args.no_interventions = not interventions
     args.no_cards = True
-    args.out = os.path.join("results", f"sbs_seed{seed}_{tag}.mp4")
-    args.summary = os.path.join("results", f"sbs_seed{seed}_{tag}.json")
+    args.out = os.path.join("outputs", "sbs", f"seed{seed}_{tag}.mp4")      # the two source runs
+    args.summary = os.path.join("outputs", "sbs", f"seed{seed}_{tag}.json")
     args.quiet = True
     print(f"  simulating seed {seed}, drones {'intervene' if interventions else 'only watch'} ...")
     rs.run(args)
@@ -132,18 +134,21 @@ def main():
     ap.add_argument("--seed", type=int, default=5)
     ap.add_argument("--duration", type=float, default=90.0)
     ap.add_argument("--fps", type=int, default=30)
-    ap.add_argument("--out", default="side_by_side.mp4")
+    ap.add_argument("--out", default=os.path.join("outputs", "side_by_side.mp4"))
     ap.add_argument("--clip", type=float, nargs=2, metavar=("START", "END"),
                     help="also write a short clip between these times (seconds)")
     ap.add_argument("--gif", action="store_true", help="also write the clip as a GIF (needs Pillow)")
+    ap.add_argument("--detector", choices=("colour", "yolo"), default="colour")
+    ap.add_argument("--appearance", choices=("standard", "varied"), default="standard")
+    ap.add_argument("--model", default=None, help="YOLO weights (default models/head_detector.pt)")
     args = ap.parse_args()
 
     base = os.path.dirname(os.path.abspath(__file__))
     os.chdir(base)
-    os.makedirs("results", exist_ok=True)
+    os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)
     print(f"Side-by-side for seed {args.seed}:")
-    off_path, off = simulate(args.seed, False, args.duration, args.fps, base)
-    on_path, on = simulate(args.seed, True, args.duration, args.fps, base)
+    off_path, off = simulate(args.seed, False, args.duration, args.fps, base, args)
+    on_path, on = simulate(args.seed, True, args.duration, args.fps, base, args)
 
     cap_off, cap_on = cv2.VideoCapture(off_path), cv2.VideoCapture(on_path)
     fourcc = cv2.VideoWriter_fourcc(*"mp4v")

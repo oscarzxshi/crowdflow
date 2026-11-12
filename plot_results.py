@@ -36,10 +36,13 @@ def style(ax):
     ax.set_axisbelow(True)
 
 
-def timeline_plot(seed, path):
+def timeline_plot(seed, path, label):
     runs = {}
     for tag in ("off", "on"):
-        with open(os.path.join("results", "runs", f"seed{seed}_{tag}.json")) as f:
+        p = os.path.join("results", "runs", label, f"seed{seed}_{tag}.json")
+        if not os.path.exists(p):                                   # older layout
+            p = os.path.join("results", "runs", f"seed{seed}_{tag}.json")
+        with open(p) as f:
             runs[tag] = json.load(f)
     fig, ax = plt.subplots(figsize=(9, 4), facecolor=SURFACE)
     style(ax)
@@ -103,7 +106,7 @@ def main():
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     with open(os.path.join("results", f"{args.label}.json")) as f:
         result = json.load(f)
-    timeline_plot(args.seed, os.path.join("results", "density_timeline.png"))
+    timeline_plot(args.seed, os.path.join("results", "density_timeline.png"), args.label)
     per_seed_plot(result, os.path.join("results", "per_seed.png"))
     print("Wrote results/density_timeline.png and results/per_seed.png")
 

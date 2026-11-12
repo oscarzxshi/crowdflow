@@ -10,6 +10,7 @@ Usage:
     python evaluate.py                     # seeds 1-10, one run at a time
     python evaluate.py --seeds 5 --workers 4
     python evaluate.py --label before_prediction   # saves results/before_prediction.json
+    python evaluate.py --appearance varied --detector yolo --label varied_yolo
 
 Runs use --no-video, so 10 seeds x 2 conditions takes a few minutes on a laptop.
 """
@@ -27,14 +28,19 @@ import run_simulation
 
 
 def one_run(job):
-    seed, interventions, duration = job
+    seed, interventions, duration, detector, appearance, model, label, threads = job
+    if detector == "yolo" and threads:
+        import torch
+        torch.set_num_threads(threads)       # avoid oversubscribing cores across parallel runs
     args = run_simulation.build_parser().parse_args([])
     args.seed = seed
     args.no_interventions = not interventions
     args.duration = duration
     args.no_video = True
     args.quiet = True
-    args.summary = os.path.join("results", "runs", f"seed{seed}_{'on' if interventions else 'off'}.json")
+    args.detector, args.appearance, args.model = detector, appearance, model
+    args.summary = os.path.join("results", "runs", label,
+                                f"seed{seed}_{'on' if interventions else 'off'}.json")
     s = run_simulation.run(args)
     first_alert = next((e["t"] for e in s["events"] if e["text"].startswith("MONITOR")), None)
     return {"seed": seed, "interventions": interventions,
@@ -69,12 +75,17 @@ def main():
     ap.add_argument("--duration", type=float, default=90.0)
     ap.add_argument("--workers", type=int, default=1, help="parallel runs (try 4 on a laptop)")
     ap.add_argument("--label", default="evaluation", help="name of the results file")
+    ap.add_argument("--detector", choices=("colour", "yolo"), default="colour")
+    ap.add_argument("--appearance", choices=("standard", "varied"), default="standard")
+    ap.add_argument("--model", default=None, help="YOLO weights (default models/head_detector.pt)")
     args = ap.parse_args()
 
     base = os.path.dirname(os.path.abspath(__file__))
     os.chdir(base)
-    os.makedirs(os.path.join("results", "runs"), exist_ok=True)
-    jobs = [(s, on, args.duration) for s in range(1, args.seeds + 1) for on in (False, True)]
+    os.makedirs(os.path.join("results", "runs", args.label), exist_ok=True)
+    threads = max(1, (os.cpu_count() or 2) // args.workers) if args.workers > 1 else 0
+    jobs = [(s, on, args.duration, args.detector, args.appearance, args.model, args.label, threads)
+            for s in range(1, args.seeds + 1) for on in (False, True)]
 
     t0 = time.perf_counter()
     print(f"Running {len(jobs)} simulations ({args.seeds} seeds x drones on/off), "
@@ -95,12 +106,14 @@ def main():
 
     off, on = summarise(rows, False), summarise(rows, True)
     result = {"label": args.label, "seeds": args.seeds, "duration_s": args.duration,
+              "detector": args.detector, "appearance": args.appearance,
               "drones_observe_only": off, "drones_intervene": on, "runs": rows}
     path = os.path.join("results", f"{args.label}.json")
     with open(path, "w") as f:
         json.dump(result, f, indent=1)
 
-    print(f"\nDone in {time.perf_counter() - t0:.0f}s. Saved {path}\n")
+    print(f"\nDone in {time.perf_counter() - t0:.0f}s. Saved {path}")
+    print(f"Detector: {args.detector}  ·  crowd appearance: {args.appearance}\n")
     print(f"| {args.seeds} seeds, {args.duration:.0f} s each | Drones observe only | Drones intervene |")
     print("|---|---|---|")
     print(f"| Mean peak density (people/m²) | {off['peak_mean']:.2f} | {on['peak_mean']:.2f} |")

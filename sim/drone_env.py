@@ -39,7 +39,14 @@ class CrowdFleetEnv:
     DRONES = ("alpha", "bravo")
 
     def __init__(self, xml_path: str = None, frame_width: int = 640, frame_height: int = 480,
-                 seed: int = 2026, render: bool = True):
+                 seed: int = 2026, render: bool = True, appearance: str = "standard"):
+        """
+        appearance: "standard" - every head the same skin tone, no hair or hats (the colour
+                                 detector's assumption);
+                    "varied"   - different skin tones, hair, caps and warm clothing colours, so
+                                 counting heads by colour no longer works. Crowd MOVEMENT is
+                                 identical for the same seed; only the looks change.
+        """
         if xml_path is None:
             base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
             xml_path = os.path.join(base_dir, "config", "arena.xml")
@@ -57,6 +64,8 @@ class CrowdFleetEnv:
                                                width=self.model.vis.global_.offwidth) if render else None)
         self.sim_dt = self.model.opt.timestep
         self.rng = np.random.default_rng(seed)
+        self.appearance = appearance
+        self.scene_option = mujoco.MjvOption()
 
         # --- Drones, spotlights, ground rings ---
         self.drone_mocap, self.disc_mocap, self.bulb_geom = {}, {}, {}
@@ -82,6 +91,10 @@ class CrowdFleetEnv:
                 self.qvel_idx[i, k] = self.model.jnt_dofadr[jid]
 
         self._init_crowd()
+        if appearance == "varied":
+            self.randomise_appearance(np.random.default_rng(seed + 7919))
+        elif appearance != "standard":
+            raise ValueError(f"unknown appearance {appearance!r}")
         self._control_counter = 0
         self.announcements = []     # log of (time, relief_points)
 
@@ -128,6 +141,38 @@ class CrowdFleetEnv:
         for d in self.DRONES:
             self.set_beacon(d, False)
         mujoco.mj_forward(self.model, self.data)
+
+    # ------------------------------------------------------------------ appearance
+    SKIN_TONES = [(0.96, 0.80, 0.69), (0.88, 0.66, 0.46), (0.78, 0.56, 0.38),
+                  (0.62, 0.42, 0.28), (0.45, 0.30, 0.20), (0.30, 0.20, 0.14)]
+    HAIR = [(0.05, 0.04, 0.04), (0.16, 0.10, 0.06), (0.33, 0.21, 0.12), (0.62, 0.48, 0.28),
+            (0.82, 0.70, 0.45), (0.55, 0.55, 0.55), (0.48, 0.20, 0.10)]
+    CLOTHING = [(0.16, 0.20, 0.32), (0.22, 0.23, 0.25), (0.32, 0.36, 0.42), (0.24, 0.28, 0.21),
+                (0.40, 0.13, 0.20), (0.60, 0.61, 0.64), (0.10, 0.10, 0.11), (0.85, 0.85, 0.82),
+                (0.80, 0.55, 0.30), (0.90, 0.70, 0.20), (0.75, 0.35, 0.20), (0.70, 0.60, 0.45),
+                (0.20, 0.45, 0.65), (0.55, 0.25, 0.50)]
+
+    def randomise_appearance(self, rng):
+        """Gives everyone a random skin tone, hair or cap, and clothing colour."""
+        self.scene_option.geomgroup[3] = 1
+        gid = lambda n: mujoco.mj_name2id(self.model, mujoco.mjtObj.mjOBJ_GEOM, n)
+        for i in range(self.num_pedestrians):
+            skin = np.array(self.SKIN_TONES[rng.integers(len(self.SKIN_TONES))]) * rng.uniform(0.93, 1.05)
+            self.model.geom_rgba[gid(f"ped_{i}_head")] = [*np.clip(skin, 0, 1), 1]
+            body = np.array(self.CLOTHING[rng.integers(len(self.CLOTHING))]) * rng.uniform(0.9, 1.1)
+            self.model.geom_rgba[gid(f"ped_{i}_geom")] = [*np.clip(body, 0, 1), 1]
+            style = rng.random()
+            hair = gid(f"ped_{i}_hair")
+            cap = gid(f"ped_{i}_cap")
+            if style < 0.65:                                    # hair
+                self.model.geom_rgba[hair] = [*self.HAIR[rng.integers(len(self.HAIR))], 1]
+                self.model.geom_rgba[cap][3] = 0
+            elif style < 0.88:                                  # cap
+                self.model.geom_rgba[hair][3] = 0
+                self.model.geom_rgba[cap] = [*rng.uniform(0.05, 0.95, 3), 1]
+            else:                                               # bald / shaved
+                self.model.geom_rgba[hair][3] = 0
+                self.model.geom_rgba[cap][3] = 0
 
     # ------------------------------------------------------------------ drone outputs
     def set_beacon(self, drone_id: str, active: bool):
@@ -273,7 +318,7 @@ class CrowdFleetEnv:
 
     def render_camera(self, cam_name: str) -> np.ndarray:
         r = self.world_renderer if cam_name == "world_cam" else self.renderer
-        r.update_scene(self.data, camera=cam_name)
+        r.update_scene(self.data, camera=cam_name, scene_option=self.scene_option)
         return r.render().copy()
 
     def close(self):

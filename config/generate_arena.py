@@ -16,6 +16,10 @@ velocity actuators on two slide joints. Heads share one warm skin tone that no c
 or venue surface uses, so the downward cameras can count heads by colour (bodies merge in
 dense crowds; heads stay separated). Clothing uses a muted palette with no warm hues.
 
+Every pedestrian also carries hair and a cap in geom group 3, which MuJoCo hides by default.
+sim/drone_env.py turns that group on and re-colours everyone for the "varied" appearance
+(different skin tones, hair, caps, warm clothing) used to test and train the learned detector.
+
 Run:  python config/generate_arena.py
 """
 
@@ -84,6 +88,8 @@ def main():
             <joint name="ped_{i}_jy" type="slide" axis="0 1 0"/>
             <geom name="ped_{i}_geom" type="cylinder" size="{PED_RADIUS} 0.40" rgba="{shirt}" mass="70.0" friction="0.3 0.005 0.0001"/>
             <geom name="ped_{i}_head" type="sphere" pos="0 0 0.50" size="0.15" rgba="{HEAD_RGBA}" mass="0.1" contype="0" conaffinity="0"/>
+            <geom name="ped_{i}_hair" type="ellipsoid" pos="0 0 0.565" size="0.152 0.152 0.09" rgba="0.1 0.08 0.06 1" group="3" mass="0.01" contype="0" conaffinity="0"/>
+            <geom name="ped_{i}_cap" type="cylinder" pos="0 0 0.62" size="0.165 0.035" rgba="0.2 0.2 0.2 0" group="3" mass="0.01" contype="0" conaffinity="0"/>
         </body>""")
         for ax in ("x", "y"):
             # Velocity servo: force = kv * (v_desired - v), capped at a realistic push force.
